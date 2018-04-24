@@ -38,7 +38,7 @@
 #include <Wire.h>
 #include <BH1750.h>
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0*3F, 16, 2);
+LiquidCrystal_I2C lcd(0*27, 16, 2);
 
 
 
@@ -80,8 +80,6 @@ const int bluePin = D3;
 //#define LDRPIN    A0
 #define SDAPIN    D6
 #define SCLPIN    D7
-#define LCDSDAPIN D8
-#define LCDSCLPIN D9
 
 
 
@@ -207,7 +205,6 @@ void setup() {
   Wire.begin(SDAPIN,SCLPIN);
   lightMeter.begin();
 
-  Wire.begin(LCDSDAPIN,LCDSCLPIN);
   lcd.init();   // initializing the LCD
   lcd.backlight();
 }
