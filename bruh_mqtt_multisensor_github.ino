@@ -38,7 +38,7 @@
 #include <Wire.h>
 #include <BH1750.h>
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0*3F, 16, 2)
+LiquidCrystal_I2C lcd(0*3F, 16, 2);
 
 
 
@@ -208,7 +208,6 @@ void setup() {
   lightMeter.begin();
 
   Wire.begin(LCDSDAPIN,LCDSCLPIN);
-  lcd.begin();
   lcd.init();   // initializing the LCD
   lcd.backlight();
 }
@@ -573,8 +572,8 @@ void loop() {
     }
   }
   lcd.setCursor(0, 0);
-  String hs="Humidity: "+String((int)HumValue)+" % ";
-  String ts="Temp: "+String((int)TempValue)+" C ";
+  String hs="Humidity: "+String((int)humValue)+" % ";
+  String ts="Temp: "+String((int)tempValue)+" C ";
   lcd.setCursor(0, 0);
   lcd.print(ts);
   lcd.setCursor(0, 1);
