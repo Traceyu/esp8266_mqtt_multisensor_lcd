@@ -37,6 +37,9 @@
 #include <ArduinoJson.h>
 #include <Wire.h>
 #include <BH1750.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0*3F, 16, 2)
+
 
 
 
@@ -77,6 +80,8 @@ const int bluePin = D3;
 //#define LDRPIN    A0
 #define SDAPIN    D6
 #define SCLPIN    D7
+#define LCDSDAPIN D8
+#define LCDSCLPIN D9
 
 
 
@@ -145,6 +150,7 @@ BH1750 lightMeter;
 /********************************** START SETUP*****************************************/
 void setup() {
 
+
   Serial.begin(115200);
 
   pinMode(PIRPIN, INPUT);
@@ -199,8 +205,12 @@ void setup() {
   reconnect();
 
   Wire.begin(SDAPIN,SCLPIN);
-
   lightMeter.begin();
+
+  Wire.begin(LCDSDAPIN,LCDSCLPIN);
+  lcd.begin();
+  lcd.init();   // initializing the LCD
+  lcd.backlight();
 }
 
 
@@ -562,6 +572,13 @@ void loop() {
       }
     }
   }
+  lcd.setCursor(0, 0);
+  String hs="Humidity: "+String((int)HumValue)+" % ";
+  String ts="Temp: "+String((int)TempValue)+" C ";
+  lcd.setCursor(0, 0);
+  lcd.print(ts);
+  lcd.setCursor(0, 1);
+  lcd.print(hs);
 }
 
 
