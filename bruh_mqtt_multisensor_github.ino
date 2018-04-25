@@ -569,9 +569,9 @@ void loop() {
     }
   }
   String hs="Humidity: "+String((int)humValue)+" % ";
-  String ts="TEMP : "+String((int)tempValue)+" C ";
+  String ts="TEMP: "+String((int)tempValue)+" "+char(223)+"C ";
   String ls="Light: "+String((int)LDR)+" Lux ";
-  String heati="HEAT : "+String((int)calculateHeatIndex(humValue, tempValue))+" C ";
+  String heati="HEAT: "+String((int)calculateHeatIndex(humValue, tempValue))+" "+char(223)+"C ";
   lcd.setCursor(0, 0);
   lcd.print(ts);
   lcd.setCursor(0, 1);
